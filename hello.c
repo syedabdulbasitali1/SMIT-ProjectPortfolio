@@ -2,13 +2,12 @@
 // cs50 custom header file
 #include <cs50.h>
 
+// function decleare but values not assigned yet
+void meow(void);
+
+
 int main(void){
 
-// function decleare but values not assigned yet
-void meow(void){
-        printf("meow!\n");
-
-}
 
     printf("hello, world\n");
     // string answer =get_string("whar's your name?");
@@ -37,6 +36,11 @@ void meow(void){
 
 for ( int i=0; i < 3;i++){
     printf("meow!\n");
+}
+
+void meow(void){
+            printf("meow!\n");
+
 }
 
 
