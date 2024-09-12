@@ -5,7 +5,10 @@
 int main(void){
 
 // function decleare but values not assigned yet
-void meow(void);
+void meow(void){
+        printf("meow!\n");
+
+}
 
     printf("hello, world\n");
     // string answer =get_string("whar's your name?");
@@ -36,8 +39,5 @@ for ( int i=0; i < 3;i++){
     printf("meow!\n");
 }
 
-void meow(void){
-    printf("meow!\n");
-}
 
 }
