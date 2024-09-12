@@ -3,7 +3,12 @@
 #include <cs50.h>
 
 // function decleare but values not assigned yet
-void meow(void);
+void meow(int n){
+    for(int i =0;i<n;i++){
+                printf("meow!\n");
+    }
+
+}
 
 
 int main(void){
@@ -33,16 +38,10 @@ int main(void){
 // y += 1;
 // y++;
 
-
-for ( int i=0; i < 3;i++){
-    printf("meow!\n");
-}
+meow(5);
 
 
 
 }
 
-void meow(void){
-            printf("meow!\n");
 
-}
