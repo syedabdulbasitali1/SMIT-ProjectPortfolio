@@ -8,9 +8,9 @@ int main(void)
     // Prompt the user for the pyramid's height
     int height;
     do{
-        int height = get_int("Height: ");
+        height = get_int("Height: ");
     }
-    while(height >= 3 || height <=8);
+    while(height >= 3 && height <=8);
 
     // Print a pyramid of that height
     for(int i = 0; i < height; i++)
@@ -20,7 +20,7 @@ int main(void)
         {
             print_row(i);
         }
-        printf("\n")
+        printf("\n");
 
     }
 }
