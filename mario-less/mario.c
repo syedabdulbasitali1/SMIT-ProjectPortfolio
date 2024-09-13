@@ -16,7 +16,7 @@ int main(void)
     for(int i = 0; i < height; i++)
     {
         // Print row
-        for(int j = 0; j < i; j++)
+        for(int j = 0; j < i+1; j++)
         {
             print_row(j + 1);
         }
