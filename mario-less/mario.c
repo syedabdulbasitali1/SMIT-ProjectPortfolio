@@ -28,5 +28,5 @@ int main(void)
 // Function to print row
 void print_row(int bricks)
 {
-    printf("#")
+    printf("#");
 }
