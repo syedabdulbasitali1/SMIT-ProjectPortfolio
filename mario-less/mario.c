@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 void print_row(int bricks);
+void print_whitespace(int n);
 
 int main(void)
 {
@@ -14,22 +15,23 @@ int main(void)
 
     // Print a pyramid of that height
 
-    for(int i = 0; i < height; i++)
+    for(int i = height; i > 0; i--)
     {
-        int white_space = height;
-        for(int k = white_space-1; k > 0; k--)
-            {
-                printf(".");
 
-            }
-        // Print row
-        for(int j = 0; j < i+1; j++)
+
+        for(int j = i-1; j > 0; j--)
         {
-
-            print_row(i);
+            print_whitespace(j);
         }
+
+        // Print row
+        for(int k = i; k > 0; k++)
+        {
+            print_row(k);
+        }
+
         printf("\n");
-        white_space--;
+
 
     }
 }
@@ -38,4 +40,11 @@ int main(void)
 void print_row(int bricks)
 {
     printf("#");
+}
+// Function to print whitespace
+void print_whitespace(int n)
+{
+    for( int k = 0;k < n;k++){
+    printf(".");
+    }
 }
