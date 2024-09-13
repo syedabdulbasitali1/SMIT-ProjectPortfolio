@@ -16,7 +16,12 @@ int main(void)
     for(int i = 0; i < height; i++)
     {
         // Print row
-        
+        for(int j = 0; j < i; j++)
+        {
+            print_row(j + 1);
+        }
+        printf("\n")
+
     }
 }
 
