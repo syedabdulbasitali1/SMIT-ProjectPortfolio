@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <cs50.h>
 
-int add(int firstValue,string operator,int secondValue){
+string add(int firstValue,char operator,int secondValue){
     string result = firstValue + operator + secondValue;
-    printf("%i\n",result);
+    return result;
 }
 
 int main(void){
@@ -12,7 +12,8 @@ int main(void){
     int value2 = get_int("number2");
     char operator = get_char("operator");
 
-    add(value1,operator,value2);
+    printf(add(value1,operator,value2));
+
 
 
 }
