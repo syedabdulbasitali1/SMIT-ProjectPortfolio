@@ -19,10 +19,10 @@ int main(void)
     {
 
 
-        for(int j = i-1; j > 0; j--)
-        {
-            print_whitespace(j);
-        }
+        // for(int j = i-1; j > 0; j--)
+        // {
+        //     print_whitespace(j);
+        // }
 
         // Print row
         for(int k = 0; k > 0; k++)
@@ -44,7 +44,7 @@ void print_row(int bricks)
 // Function to print whitespace
 void print_whitespace(int n)
 {
-    for( int k = 0;k < n;k++){
+    
     printf(".");
-    }
+
 }
