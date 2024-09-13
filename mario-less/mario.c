@@ -18,7 +18,7 @@ int main(void)
         // Print row
         for(int j = 0; j < i+1; j++)
         {
-            for(int k = j+1; j > 0; j--)
+            for(int k = (height-2); j > 0; j--)
             {
                 printf(".");
             }
