@@ -18,6 +18,10 @@ int main(void)
         // Print row
         for(int j = 0; j < i+1; j++)
         {
+            for(int k = (height-1); k > 0;k--)
+            {
+                printf(".");
+            }
             print_row(i);
         }
         printf("\n");
