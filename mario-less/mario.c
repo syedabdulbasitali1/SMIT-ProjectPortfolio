@@ -13,14 +13,14 @@ int main(void)
     while(height < 3 || height > 8);
 
     // Print a pyramid of that height
-    for(int k = height-1; k > 0; k--)
+
+    for(int i = 0; i < height; i++)
+    {
+        for(int k = height-1; k > 0; k--)
             {
                 printf(".");
 
             }
-    for(int i = 0; i < height; i++)
-    {
-
         // Print row
         for(int j = 0; j < i+1; j++)
         {
