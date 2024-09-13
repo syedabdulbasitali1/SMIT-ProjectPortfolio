@@ -18,7 +18,7 @@ int main(void)
         // Print row
         for(int j = 0; j < i+1; j++)
         {
-            print_row(j + 1);
+            print_row(i);
         }
         printf("\n")
 
