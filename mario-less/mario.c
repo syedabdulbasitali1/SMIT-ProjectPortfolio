@@ -25,7 +25,7 @@ int main(void)
         }
 
         // Print row
-        for(int k = i; k > 0; k++)
+        for(int k = 0; k > 0; k++)
         {
             print_row(k);
         }
