@@ -16,7 +16,8 @@ int main(void)
 
     for(int i = 0; i < height; i++)
     {
-        for(int k = height-2; k > 0; k--)
+        int white_space = height;
+        for(int k = white_space-1; k > 0; k--)
             {
                 printf(".");
 
@@ -28,6 +29,7 @@ int main(void)
             print_row(i);
         }
         printf("\n");
+        white_space--;
 
     }
 }
