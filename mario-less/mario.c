@@ -27,7 +27,7 @@ int main(void)
         // Print row
         for(int k = 0; k > 0; k++)
         {
-            
+
             print_row(k);
         }
 
@@ -43,9 +43,9 @@ void print_row(int bricks)
     printf("#");
 }
 // Function to print whitespace
-void print_whitespace(int n)
-{
+// void print_whitespace(int n)
+// {
 
-    printf(".");
+//     printf(".");
 
-}
+// }
