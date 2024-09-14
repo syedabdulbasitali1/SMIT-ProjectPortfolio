@@ -13,7 +13,7 @@ int main(void)
     {
         n = get_int("Height: ");
     }
-    while (n < 1 || n > 8);  // height is between 1 and 8
+    while (n < 1 || n > 8); // height is between 1 and 8
 
     // Call the function to print the double pyramid
     printPyramid(n);
@@ -47,6 +47,6 @@ void printPyramid(int n)
             printf("#");
         }
 
-        printf("\n");  // Move to the next line
+        printf("\n"); // Move to the next line
     }
 }
