@@ -1,51 +1,40 @@
 #include <cs50.h>
 #include <stdio.h>
 
-void print_row(int bricks);
-void print_whitespace(int n);
+// Function declaration
+void printPyramid(int n);
 
 int main(void)
 {
-    // Prompt the user for the pyramid's height
-    int height;
-    do{
-        height = get_int("Height: ");
+    int n;
+
+    // Prompt the user for the pyramid's height (1-8 range based on the problem)
+    do
+    {
+        n = get_int("Height: ");
     }
-    while(height < 3 || height > 8);
+    while (n < 1 || n > 8);  // Fix to accept input between 1 and 8
 
-    // Print a pyramid of that height
+    // Call the function to print the pyramid
+    printPyramid(n);
 
-    // for(int i = 0; i < height-1; i++)
-    // {
-
-
-        // for(int j = i-1; j > 0; j--)
-        // {
-        //     print_whitespace(j);
-        // }
-
-        // Print row
-        // for(int k = 0; k < i+1 ; k++)
-        // {
-
-            print_row(10);
-        // }
-
-        // printf("\n");
-
-
-    // }
 }
 
-// Function to print row
-void print_row(int bricks)
+// Function to print the pyramid
+void printPyramid(int n)
 {
-    printf("#");
+    for (int i = 1; i <= n; i++) // Loop for each row
+    {
+        for (int j = 0; j < n - i; j++)  // Print leading spaces
+        {
+            printf(" ");
+        }
+
+        for (int k = 0; k < i; k++)  // Print hashes (#)
+        {
+            printf("#");
+        }
+
+        printf("\n");  // Move to the next line
+    }
 }
-// Function to print whitespace
-// void print_whitespace(int n)
-// {
-
-//     printf(".");
-
-// }
