@@ -15,8 +15,8 @@ int main(void)
 
     // Print a pyramid of that height
 
-    for(int i = 0; i < height-1; i++)
-    {
+    // for(int i = 0; i < height-1; i++)
+    // {
 
 
         // for(int j = i-1; j > 0; j--)
@@ -25,16 +25,16 @@ int main(void)
         // }
 
         // Print row
-        for(int k = 0; k < i+1 ; k++)
-        {
+        // for(int k = 0; k < i+1 ; k++)
+        // {
 
-            print_row(i);
-        }
+            print_row(10);
+        // }
 
-        printf("\n");
+        // printf("\n");
 
 
-    }
+    // }
 }
 
 // Function to print row
