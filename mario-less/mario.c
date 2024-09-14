@@ -25,10 +25,10 @@ int main(void)
         // }
 
         // Print row
-        for(int k = height-1; k > 0; k++)
+        for(int k = i+1; k > 0 ; k++)
         {
 
-            print_row(k);
+            print_row(i);
         }
 
         printf("\n");
