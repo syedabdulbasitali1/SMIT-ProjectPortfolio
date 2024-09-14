@@ -15,7 +15,7 @@ int main(void)
 
     // Print a pyramid of that height
 
-    for(int i = 0; i > height-1; i++)
+    for(int i = 0; i < height-1; i++)
     {
 
 
