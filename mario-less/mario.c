@@ -25,7 +25,7 @@ int main(void)
         // }
 
         // Print row
-        for(int k = ; k < i; k++)
+        for(int k = height-1; k > 0; k++)
         {
 
             print_row(k);
