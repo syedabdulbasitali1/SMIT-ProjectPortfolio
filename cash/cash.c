@@ -23,7 +23,7 @@ int r (int cashback)
 {
     int n;
     while(cashback > 25){
-       int n += (cashback-25);
+        n = cashback-25;
         n++;
     }
     while(cashback > 10)
