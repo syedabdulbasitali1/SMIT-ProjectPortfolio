@@ -7,7 +7,7 @@ int main()
 {
     int cash;
     do{
-        cash = get_int("inter amount");
+        cash = get_int("inter amount: ");
     }
     while(cash < 1);
 
