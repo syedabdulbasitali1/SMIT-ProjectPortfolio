@@ -1,7 +1,7 @@
 #include <cs50.h>
 #include <stdio.h>
 
-int return(int cashback)
+int r (int cashback);
 
 int main()
 {
@@ -11,7 +11,7 @@ int main()
     }
     while(cash < 1);
 
-    int result =return(cash);
+    int result = r(cash);
     printf(result);
 
 
@@ -19,7 +19,7 @@ int main()
 }
 
 
-int return(int cashback);
+int r(int cashback);
 {
     int n;
     while(cashback > 25){
