@@ -7,19 +7,19 @@ int main()
 {
     int cash;
     do{
-        int cash = get_int("inter amount");
+        cash = get_int("inter amount");
     }
     while(cash < 1);
 
     int result = r(cash);
-    printf(result);
+    printf("paid %i\n",result);
 
 
 
 }
 
 
-int r(int cashback);
+int r (int cashback)
 {
     int n;
     while(cashback > 25){
