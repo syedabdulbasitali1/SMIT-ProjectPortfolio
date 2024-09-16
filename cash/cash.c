@@ -21,12 +21,11 @@ int main()
 
 int r (int cashback)
 {
-    printf("function working");
     int n;
     while(cashback > 25){
         cashback-=25;
         printf("line 25\n");
-        n++;
+        n = 1;
     }
     while(cashback > 10)
     {
