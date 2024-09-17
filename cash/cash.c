@@ -1,46 +1,46 @@
 #include <cs50.h>
 #include <stdio.h>
 
-int r (int cashback);
+int calculate_quarters(int cents);
 
 int main()
 {
-    int cash;
-    do{
-        cash = get_int("inter amount: ");
+    // Prompt the user for change owed, in cents
+    int cents;
+    do
+    {
+        cents = get_int("Change owed: ");
     }
-    while(cash < 1);
-
-    int result = r(cash);
-    printf("paid %i\n",result);
-
-
-
+    while (cents < 0);
+    // Calculate how many quarters you should give customer
+    int result = calculate_quarters(cents);
+    printf("%i\n", result);
 }
 
-
-int r (int cashback)
+// Function to calculate number of quarters from cents
+int calculate_quarters(int cents)
 {
-    int n;
-    while(cashback > 25){
-        cashback-=25;
-        printf("line 25\n");
-        n = 1;
-    }
-    while(cashback > 10)
+    // Calculate how many quarters you should give customer
+    int quarters = 0;
+    while (cents >= 25)
     {
-        cashback -= 10;
-        n++;
+        cents -= 25;
+        quarters++;
     }
-    while(cashback > 5)
+    while (cents >= 10)
     {
-        cashback -=5;
-        n++;
+        cents -= 10;
+        quarters++;
     }
-    while(cashback > 1)
+    while (cents >= 5)
     {
-        cashback -= 1;
-        n++;
+        cents = cents - 5;
+        quarters++;
     }
-    return n;
+    while (cents >= 1)
+    {
+        cents = cents - 1;
+        quarters++;
+    }
+    return quarters;
 }
