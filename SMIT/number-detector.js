@@ -11,9 +11,16 @@ const readline = require('readline');
 // 2. Create an interface for reading input:
 // This setup an interface to read from standard
 const rl = readline.createInterface({
-    input: process.stdnin,
-    output
-})
+    input: process.stdin,
+    output: process.stdout
+});
+
+// 3. Prompt user input
+rl.question('Enter a string:'),
+(answer) => {
+    console.log('You entered: ${answer}');
+    rl.close();
+}
 
 if(userInput % 2 === 0){
     console.log("Your number is EVEN.");
