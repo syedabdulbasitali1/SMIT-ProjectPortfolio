@@ -1,6 +1,6 @@
 console.log("Hello, Javascript");
 
-let userInput = 20;
+let userInput = prompt("Enter a number");
 
 if(userInput % 2 === 0){
     console.log("Your number is EVEN.");
