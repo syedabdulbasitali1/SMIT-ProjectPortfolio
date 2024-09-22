@@ -16,11 +16,11 @@ const rl = readline.createInterface({
 });
 
 // 3. Prompt user input
-rl.question('Enter a string:'),
+rl.question('Enter a string:',
 (answer) => {
     console.log('You entered: ${answer}');
     rl.close();
-}
+});
 
 if(userInput % 2 === 0){
     console.log("Your number is EVEN.");
