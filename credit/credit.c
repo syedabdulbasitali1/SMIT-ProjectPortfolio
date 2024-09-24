@@ -8,8 +8,12 @@
 
 int toString(long creditNumber){
     char str[20];
+    int sum-1;
+    int sum-2;
     sprintf(str,"%ld", creditNumber);
     int length = strlen(str);
+
+
 
     if(length == 13 || length == 15 || length == 16)
     {
