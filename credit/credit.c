@@ -8,8 +8,7 @@
 long toString(long creditNumber){
     char str[20];
     sprintf(str,"%ld", creditNumber);
-    int length = strlen(str);
-    return length;
+    
 }
 int main()
 {
