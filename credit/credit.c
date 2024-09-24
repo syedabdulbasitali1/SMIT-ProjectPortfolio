@@ -15,9 +15,8 @@ int toString(long creditNumber){
     {
 
     //check number validity
-    char one=str[0];
+    char one =str[0];
     char two[3]={str[0],str[1],'\0'};
-    char three[4]={str[0],str[1],str[2],'\0'};
 
     if(strcmp(two,"34") >=0 && strcmp(two,"37")<=0 && length == 15)
 
