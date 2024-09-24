@@ -8,8 +8,8 @@
 long toString(long creditNumber){
     char str[20];
     sprintf(str,"%ld", creditNumber);
-    return strlen(str);
-
+    int length = strlen(str);
+    return length;
 }
 int main()
 {
@@ -19,8 +19,8 @@ int main()
         user_input = get_long("Enter credit card number: ");
     }
     while(user_input < 1);
-    long length = toString(user_input);
+    int length = toString(user_input);
     // int result =func(user_input);
-    printf("%ld\n", length);
+    printf("%i\n", length);
 
 }
