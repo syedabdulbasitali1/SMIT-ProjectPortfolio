@@ -13,7 +13,10 @@ int toString(long creditNumber){
     sprintf(str,"%ld", creditNumber);
     int length = strlen(str);
 
-
+//first handle for even position
+for(int i = length, i > 0, i-- ){
+    sum-1 += str[i] 
+}
 
     if(length == 13 || length == 15 || length == 16)
     {
