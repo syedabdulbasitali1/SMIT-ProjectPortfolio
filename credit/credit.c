@@ -15,7 +15,8 @@ int toString(long creditNumber){
 
 //first handle for even position
 for(int i = length, i > 0, i-- ){
-    sum-1 += str[i] 
+    if((str[i] % 2) ==0)
+    sum-1 += str[i]
 }
 
     if(length == 13 || length == 15 || length == 16)
