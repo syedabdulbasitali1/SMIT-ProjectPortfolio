@@ -5,6 +5,11 @@ int func(int n){
     return n % 10;
 }
 
+int toString(int creditNumber){
+    char str[20];
+    sprintf()
+
+}
 int main()
 {
     int user_input;
