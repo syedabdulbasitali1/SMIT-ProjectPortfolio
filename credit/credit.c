@@ -17,8 +17,8 @@ int main()
     {
         user_input = get_long("Enter credit card number: ");
     }
-    while(user_input.length < 1);
-    int length 
+    while(user_input < 1);
+    int length = toString(user_input);
     // int result =func(user_input);
     printf("%i\n", result);
 
