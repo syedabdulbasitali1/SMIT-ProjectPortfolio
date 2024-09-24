@@ -10,9 +10,13 @@ int toString(long creditNumber){
     char str[20];
     sprintf(str,"%ld", creditNumber);
     int length = strlen(str);
+
+    //check number validity
+    int first=str[0]
+
+
     return length;
 }
-string check()
 int main()
 {
     long user_input;
