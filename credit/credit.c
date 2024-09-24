@@ -11,7 +11,8 @@ int toString(long creditNumber){
     sprintf(str,"%ld", creditNumber);
     int length = strlen(str);
 
-    
+    if(length == 13 && length == 15 && length == 16)
+    {
 
     //check number validity
     char one=str[0];
@@ -26,6 +27,11 @@ int toString(long creditNumber){
         printf("MasterCard\n");
     else if(strcmp(one,"4") ==0 && length == 13 && length == 16)
         printf("Visa\n");
+    }
+    
+    else{
+
+    }
 
     return length;
 }
