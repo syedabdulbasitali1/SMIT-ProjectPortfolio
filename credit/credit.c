@@ -8,15 +8,15 @@
 
 int toString(long creditNumber){
     char str[20];
-    int sum-1;
-    int sum-2;
+    int sum_1;
+    int sum_2;
     sprintf(str,"%ld", creditNumber);
     int length = strlen(str);
 
 //first handle for even position
 for(int i = length, i > 0, i-- ){
     if((str[i] % 2) ==0)
-{sum-1 += str[i];
+{sum_1 += str[i];
 printf("even number is: %c\n", str[i]);}
 
 
