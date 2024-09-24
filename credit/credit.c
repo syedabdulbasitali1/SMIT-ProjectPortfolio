@@ -41,10 +41,10 @@ int main()
     do
     {
         user_input = get_long("Enter credit card number: ");
-        int length = toString(user_input);
+
 
     }
-    while(user_input < 1 && length == 13  || length == 15 || length == 16);
+    while(user_input < 1 );
     // printf("%i\n", length);
-
+    int length = toString(user_input);
 }
