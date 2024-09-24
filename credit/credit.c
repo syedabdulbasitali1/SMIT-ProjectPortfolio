@@ -18,13 +18,13 @@ int toString(long creditNumber){
     char one =str[0];
     char two[3]={str[0],str[1],'\0'};
 
-    if(strcmp(two,"34") >=0 || strcmp(two,"37") <=0 && length == 15)
+    if((strcmp(two,"34") >=0 || strcmp(two,"37") <=0) && length == 15)
 
         printf(" American Express (AMEX)\n");
 
-    else if(strcmp(two,"51") >=0 || strcmp(two,"55") <=0 && length == 16)
+    else if((strcmp(two,"51") >=0 || strcmp(two,"55") <=0) && length == 16)
         printf("MasterCard\n");
-    else if(one == "4" && length == 13 || length == 16)
+    else if((length == 16 || length == 13) && one == '4' )
         printf("Visa\n");
     else
     printf("check is invalid");
