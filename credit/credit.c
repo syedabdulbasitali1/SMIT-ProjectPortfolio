@@ -5,9 +5,9 @@
 //     return n % 10;
 // }
 
-int toString(int creditNumber){
+int toString(long creditNumber){
     char str[20];
-    sprintf(str,"%ld",creditNumber);
+    sprintf(str,"%d", creditNumber);
     return strlen(str);
 
 }
