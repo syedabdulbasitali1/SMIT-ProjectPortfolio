@@ -26,6 +26,8 @@ int toString(long creditNumber){
         printf("MasterCard\n");
     else if(one == "4" && length == 13 || length == 16)
         printf("Visa\n");
+    else
+    printf("check is invalid");
     }
 
     else{
