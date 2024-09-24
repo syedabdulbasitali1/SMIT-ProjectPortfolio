@@ -28,9 +28,9 @@ int toString(long creditNumber){
     else if(strcmp(one,"4") ==0 && length == 13 && length == 16)
         printf("Visa\n");
     }
-    
-    else{
 
+    else{
+        printf("invalid number\n");
     }
 
     return length;
