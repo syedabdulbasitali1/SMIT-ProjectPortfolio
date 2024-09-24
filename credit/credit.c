@@ -8,11 +8,11 @@
 
 int toString(long creditNumber){
     char str[20];
-    int sum_1;
-    int sum_2;
     sprintf(str,"%ld", creditNumber);
     int length = strlen(str);
 
+    int sum_1;
+    int sum_2;
 //first handle for even position
 for(int i = length, i > 0, i-- ){
     if((str[i] % 2) ==0)
