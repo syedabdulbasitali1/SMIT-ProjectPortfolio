@@ -11,6 +11,8 @@ int toString(long creditNumber){
     sprintf(str,"%ld", creditNumber);
     int length = strlen(str);
 
+    
+
     //check number validity
     char one=str[0];
     char two[3]={str[0],str[1],'\0'};
