@@ -12,7 +12,7 @@ int main()
     {
         user_input = get_long("Enter credit card number: ");
     }
-    while(user_input < 1);
+    while(user_input.length < 1);
     int result =func(user_input);
     printf("%i\n", result);
 
