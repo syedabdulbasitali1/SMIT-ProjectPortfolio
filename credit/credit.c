@@ -12,7 +12,11 @@ int toString(long creditNumber){
     int length = strlen(str);
 
     //check number validity
-    int first=str[0]
+    char one=str[0];
+    char two[3]={str[0],str[1],'\0'};
+    char three[4]={str[0],str[1],str[2],'\0'};
+
+    if(strcmp(one,))
 
 
     return length;
