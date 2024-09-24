@@ -24,7 +24,7 @@ int toString(long creditNumber){
 
     else if(strcmp(two,"51") >=0 || strcmp(two,"55")<=0 && length == 16)
         printf("MasterCard\n");
-    else if(strcmp(one,"4") ==0 || length == 13 && length == 16)
+    else if(one == "4" && length == 13 || length == 16)
         printf("Visa\n");
     }
 
