@@ -12,6 +12,7 @@ int toString(long creditNumber){
     int length = strlen(str);
     return length;
 }
+string check()
 int main()
 {
     long user_input;
