@@ -11,20 +11,20 @@ int toString(long creditNumber){
     sprintf(str,"%ld", creditNumber);
     int length = strlen(str);
 
-    if(length == 13 && length == 15 && length == 16)
+    if(length == 13 || length == 15 || length == 16)
     {
 
     //check number validity
     char one =str[0];
     char two[3]={str[0],str[1],'\0'};
 
-    if(strcmp(two,"34") >=0 && strcmp(two,"37")<=0 && length == 15)
+    if(strcmp(two,"34") >=0 || strcmp(two,"37")<=0 && length == 15)
 
         printf(" American Express (AMEX)\n");
 
-    else if(strcmp(two,"51") >=0 && strcmp(two,"55")<=0 && length == 16)
+    else if(strcmp(two,"51") >=0 || strcmp(two,"55")<=0 && length == 16)
         printf("MasterCard\n");
-    else if(strcmp(one,"4") ==0 && length == 13 && length == 16)
+    else if(strcmp(one,"4") ==0 || length == 13 && length == 16)
         printf("Visa\n");
     }
 
