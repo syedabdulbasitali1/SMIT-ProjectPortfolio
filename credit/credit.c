@@ -8,6 +8,7 @@
 int toString(int creditNumber){
     char str[20];
     sprintf(str,"%ld",creditNumber);
+    return strlen(str);
 
 }
 int main()
@@ -20,6 +21,6 @@ int main()
     while(user_input < 1);
     int length = toString(user_input);
     // int result =func(user_input);
-    printf("%i\n", result);
+    printf("%i\n", length);
 
 }
