@@ -16,12 +16,12 @@ int toString(long creditNumber){
     char two[3]={str[0],str[1],'\0'};
     char three[4]={str[0],str[1],str[2],'\0'};
 
-    if(strcmp(two,"34") >=0 && strcmp(two,"37")<=0)
-    {
-        
-        printf(" American Express (AMEX)\n");
-    }
+    if(strcmp(two,"34") >=0 && strcmp(two,"37")<=0 && length == 15)
 
+        printf(" American Express (AMEX)\n");
+
+    else if(strcmp(two,"51") >=0 && strcmp(two,"55")<=0 && length == 16)
+        printf("")
 
     return length;
 }
