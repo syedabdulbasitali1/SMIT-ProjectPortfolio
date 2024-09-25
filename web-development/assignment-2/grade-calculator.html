@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade-Calculator</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: cornsilk;
+            height: 100dvh;
+            width: 100dvw;
+        }
+        h1{
+            color: blueviolet;
+            font-size: 2 rem;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bolder;
+        }
+        input{
+            width: 300px;
+            height: 50px;
+            border: none;
+            border-radius: 20px;
+            margin: 12px;
+            outline: none;
+            font-size: 1rem;
+            text-align: center;
+            box-shadow: -5px -5px 10px rgba(245, 245, 245, 0.185),inset 5px 5px 10px rgba(0, 0, 0, 0.105);
+        }
+        input:focus{
+            font-size: 1rem ;
+            text-align: center;
+            color: blueviolet;
+            border: none;
+        }
+        input::placeholder{
+            text-align: center;
+            font-size: 1rem;
+            color: rgba(128, 0, 128, 0.162);
+        }
+        .btn{
+            box-shadow: 5px 5px 10px rgba(245, 245, 245, 0.185),inset 5px 5px 10px rgba(0, 0, 0, 0.105);
+            text-align: center;
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            background-color: rgba(137, 43, 226, 0.145);
+        }
+    </style>
+</head>
+<body>
+    <h1>Grade Calculator</h1>
+    <input type="text" name="text" id="text" placeholder="Enter your percentage">
+
+    <button class="btn" onclick="getInput()">Check Grades</button>
+
+
+</body>
+<script>
+    console.log("Hello, JavaScript!");
+    let userInput;
+function getInput() {
+    userInput = document.querySelector('#text').value;
+
+    if(userInput > 0 && userInput <= 100 ){
+        document.querySelector('#text').setCustomValidity("");
+        document.querySelector('#text').style.border= "green";
+        let grade;
+        if(userInput >= 90){
+            grade = "A-1";
+        }
+        else if(userInput >= 80){
+            grade = "A";
+        }
+        else if(userInput >= 70){
+            grade = "B";
+        }
+        else if(userInput >= 60){
+            grade = "C";
+        }
+        else{
+            grade = "F";
+        }
+        alert(`Your Grade is: ${grade}`);
+    }
+    else{
+        alert("Percentage should be number, greater than 0 and less than 100");
+    }
+    console.log(userInput);
+}
+
+</script>
+</html>
