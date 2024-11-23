@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudPulse</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+
+        <!-- BACKGROUND WEATHER ANIMATIONS    -->
+         <!-- 1) Light Raining No Lightning -->
+         <div class="rain front-row"></div>
+         <div class="rain back-row"></div>
+         <!-- <div class="toggles">d
+           <div class="splat-toggle toggle active">SPLAT</div>
+           <div class="back-row-toggle toggle active">BACK<br>ROW</div>
+           <div class="single-toggle toggle">SINGLE</div>
+         </div> -->
+
+         <!-- 2) Havy Raining with Lightning -->
+
+
+
+        <img class="bg-image" src="./images/night/night5.jpg" alt="bg-image">
+        <header><h4>CloudPulse</h4></header>
+
+        <div class="main-container">
+
+<div class="inner-container">
+
+            <div class="container-top">
+                <div class="search">
+                <img src="./images/location-icon-black.png" alt="location-icon">
+                <input type="text" placeholder="Enter City">
+                <h2 class="city-name">Hyderabad</h2>
+            </div>
+                <div class="basic">
+                    <div class="icon">
+                        <img src="./images/raining-cloud.png" alt="weather-icon">
+                    </div>
+
+                    <div class="details">
+                    <div class="temp">28°<div class="dropdown">
+                        <input type="checkbox" id="dropdown">
+
+                        <label class="dropdown__face" for="dropdown">
+                          <div class="dropdown__text">C</div>
+
+
+                        </label>
+
+                        <ul class="dropdown__items">
+                          <li>Celcius</li>
+                          <li>Fernite</li>
+                          <li>Kelvin</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <h2>Feels like 25°C</h2>
+                    <h2>Raining</h2>
+                </div>
+                </div>
+            </div>
+
+
+            <div class="container-bottom">
+                <div class=" child-div div1">
+                    <div class="icon1">
+                        <img src="./images/thunder-cloud.png" alt="weather-condition-icon">
+                    </div>
+                    <div class="unit">
+                        <div class="title">
+                            <h4>Status:</h4>
+                         </div>
+                         <div class="values">
+                             <p>Moderate Rain</p>
+                         </div>
+                    </div>
+                </div>
+                <div class=" child-div div2">
+                    <div class="icon1">
+                        <img src="./images/humadity.png" alt="humadity-icon">
+                    </div>
+                    <div class="unit">
+                        <div class="title">
+                            <h4>Humidity :</h4>
+                         </div>
+                         <div class="values">
+                             <p>60</p>
+                         </div>
+                    </div>
+                </div>
+                <div class=" child-div div3">
+                    <div class="icon1">
+                        <img src="./images/wind-cloud.png" alt="wind-icon">
+                    </div>
+                    <div class="unit">
+                        <div class="title">
+                            <h4>speed :</h4>
+                            <h4>deg :</h4>
+                            <!-- <h4>gust :</h4> -->
+                         </div>
+                         <div class="values">
+                             <p>4.09</p>
+                             <p>121</p>
+                             <!-- <p>3.47</p> -->
+                         </div>
+                    </div>
+                </div>
+                <div class=" child-div div4">
+                    <div class="icon1">
+                        <img src="./images/pressure-icon.png" alt="pressure-icon">
+
+                    </div>
+                    <div class="unit">
+                        <div class="title">
+                            <h4>Pressure :</h4>
+                         </div>
+                         <div class="values">
+                             <p>1021</p>
+                         </div>
+                    </div>
+                </div>
+                <div class=" child-div div5">
+                    <div class="icon1">
+                        <img src="./images/sunset1.png" alt="sunset-icon">
+                    </div>
+                    <div class="unit">
+                        <div class="title">
+                           <h4>sunrise :</h4>
+                           <h4>sunset  :</h4>
+                        </div>
+                        <div class="values">
+                            <p>6:45</p>
+                            <p>5:45</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
