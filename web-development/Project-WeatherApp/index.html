@@ -1,66 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CloudPulse</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <main>
 
         <!-- BACKGROUND WEATHER ANIMATIONS    -->
-         <!-- 1) Light Raining No Lightning -->
-         <div class="rain front-row"></div>
-         <div class="rain back-row"></div>
-         <!-- <div class="toggles">d
+        <!-- 1) Light Raining No Lightning -->
+         <div class="rainAnime">
+        <div class="rain front-row"></div>
+        <div class="rain back-row"></div>
+    </div>
+
+    <!-- 1) Light Raining No Lightning -->
+    <div class="thunder">
+        <canvas id="canvas1"></canvas>
+        <canvas id="canvas2"></canvas>
+        <canvas id="canvas3"></canvas>
+    </div>
+
+    
+
+        <!-- <div class="toggles">d
            <div class="splat-toggle toggle active">SPLAT</div>
            <div class="back-row-toggle toggle active">BACK<br>ROW</div>
            <div class="single-toggle toggle">SINGLE</div>
          </div> -->
 
-         <!-- 2) Havy Raining with Lightning -->
+        <!-- 2) Havy Raining with Lightning -->
 
 
 
         <img class="bg-image" src="./images/night/night5.jpg" alt="bg-image">
-        <header><h4>CloudPulse</h4></header>
+        <header>
+            <h4>CloudPulse</h4>
+        </header>
 
         <div class="main-container">
 
-<div class="inner-container">
-
             <div class="container-top">
                 <div class="search">
-                <img src="./images/location-icon-black.png" alt="location-icon">
-                <input type="text" placeholder="Enter City">
-                <h2 class="city-name">Hyderabad</h2>
-            </div>
+                    <img src="./images/location-icon-white.png" alt="location-icon">
+                    <input class="input-field" type="text" placeholder="Enter City">
+                    <h2 class="city-name">Hyderabad</h2>
+                </div>
                 <div class="basic">
                     <div class="icon">
-                        <img src="./images/raining-cloud.png" alt="weather-icon">
+                        <img id="weather-icon" src="./images/raining-cloud.png" alt="weather-icon">
                     </div>
 
                     <div class="details">
-                    <div class="temp">28°<div class="dropdown">
-                        <input type="checkbox" id="dropdown">
+                        <div class="temp"><img src="./images/Thermometer10.png" alt=""> <span class="temperature">28</span>°<div class="dropdown">
+                                <input type="checkbox" id="dropdown">
 
-                        <label class="dropdown__face" for="dropdown">
-                          <div class="dropdown__text">C</div>
+                                <label class="dropdown__face" for="dropdown">
+                                    <div class="dropdown__text">C</div>
 
 
-                        </label>
+                                </label>
 
-                        <ul class="dropdown__items">
-                          <li>Celcius</li>
-                          <li>Fernite</li>
-                          <li>Kelvin</li>
-                        </ul>
-                      </div>
+                                <ul class="dropdown__items">
+                                    <li>Celcius</li>
+                                    <li>Fernite</li>
+                                    <li>Kelvin</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <h2 class="feels">Feels like 25°C</h2>
+                        <h2 class="weather">Raining</h2>
                     </div>
-                    <h2>Feels like 25°C</h2>
-                    <h2>Raining</h2>
-                </div>
                 </div>
             </div>
 
@@ -73,12 +87,15 @@
                     <div class="unit">
                         <div class="title">
                             <h4>Status:</h4>
-                         </div>
-                         <div class="values">
-                             <p>Moderate Rain</p>
-                         </div>
+                        </div>
+                        <div class="values">
+                            <p>Moderate Rain</p>
+                        </div>
                     </div>
                 </div>
+
+                <div class="vertical-line"></div>
+
                 <div class=" child-div div2">
                     <div class="icon1">
                         <img src="./images/humadity.png" alt="humadity-icon">
@@ -86,12 +103,15 @@
                     <div class="unit">
                         <div class="title">
                             <h4>Humidity :</h4>
-                         </div>
-                         <div class="values">
-                             <p>60</p>
-                         </div>
+                        </div>
+                        <div class="values">
+                            <p><span class="data">60</span>%</p>
+                        </div>
                     </div>
                 </div>
+
+                <div class="vertical-line"></div>
+
                 <div class=" child-div div3">
                     <div class="icon1">
                         <img src="./images/wind-cloud.png" alt="wind-icon">
@@ -101,14 +121,17 @@
                             <h4>speed :</h4>
                             <h4>deg :</h4>
                             <!-- <h4>gust :</h4> -->
-                         </div>
-                         <div class="values">
-                             <p>4.09</p>
-                             <p>121</p>
-                             <!-- <p>3.47</p> -->
-                         </div>
+                        </div>
+                        <div class="values">
+                            <p><span class="val1">4.09</span> km/h</p>
+                            <p><span class="val2">4.09</span></p>
+                            <!-- <p>3.47</p> -->
+                        </div>
                     </div>
                 </div>
+
+                <div class="vertical-line"></div>
+
                 <div class=" child-div div4">
                     <div class="icon1">
                         <img src="./images/pressure-icon.png" alt="pressure-icon">
@@ -117,35 +140,41 @@
                     <div class="unit">
                         <div class="title">
                             <h4>Pressure :</h4>
-                         </div>
-                         <div class="values">
-                             <p>1021</p>
-                         </div>
+                        </div>
+                        <div class="values">
+                            <p><span class="value">1021</span> hPa</p>
+                        </div>
                     </div>
                 </div>
+
+                <div class="vertical-line"></div>
+
                 <div class=" child-div div5">
                     <div class="icon1">
                         <img src="./images/sunset1.png" alt="sunset-icon">
                     </div>
                     <div class="unit">
                         <div class="title">
-                           <h4>sunrise :</h4>
-                           <h4>sunset  :</h4>
+                            <h4>sunrise :</h4>
+                            <h4>sunset :</h4>
                         </div>
                         <div class="values">
-                            <p>6:45</p>
-                            <p>5:45</p>
+                            <p><span class="val1">6:45</span> a:m</p>
+                            <p><span class="val2">5:45</span> p:m</p>
                         </div>
                     </div>
                 </div>
             </div>
 
 
-        </div>
+
 
         </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- <script src="./rainy.js library/rainyday.js/dist/rainyday.min.js"></script> -->
     <script src="script.js"></script>
 </body>
+
 </html>

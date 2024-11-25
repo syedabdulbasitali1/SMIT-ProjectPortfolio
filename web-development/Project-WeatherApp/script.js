@@ -46,3 +46,282 @@ var makeItRain = function() {
 //   });
 
   makeItRain();
+
+
+
+
+
+//   Main Weather icon Tilting Effect
+const card = document.getElementById('weather-icon');
+const glass = document.querySelector(".inner-container");
+
+card.addEventListener("mousemove",(event)=> {
+    const pointerX = event.clientX;
+    const pointerY = event.clientY;
+
+    const cardRec = card.getBoundingClientRect();
+
+    const halfWidth = cardRec.width / 2;
+    const halfHeight = cardRec.height / 2;
+
+    const cardCenterX = cardRec.left + halfWidth;
+    const cardCenterY = cardRec.top + halfHeight;
+
+    const deltaX = pointerX - cardCenterX;
+    const deltaY = pointerY - cardCenterY;
+
+    const rx = deltaY / halfHeight;
+    const ry = deltaX / halfWidth;
+    const distanceToTheCenter = Math.sqrt(Math.pow(deltaX,2) + Math.pow(deltaY, 2));
+    const maxDistance = Math.max(halfWidth,halfHeight);
+    const degree = (distanceToTheCenter * 10) / maxDistance;
+    card.style.transform = `perspective(400px) rotate3D(${-rx}, ${ry}, 0, ${degree}deg)`;
+    // glass.style.transform = `translate(${-ry * 100}%, ${-rx * 100}%) scale(2.4)`;
+    // glass.style.opacity = (distanceToTheCenter * 0.6) / maxDistance;
+});
+card.addEventListener("mouseleave",()=> {
+    card.style = null;
+    // glass.style.opacity = 0;
+});
+
+
+
+// // Using weather API
+
+// function getWeather(cityName) {
+//     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=f9cdce05e49602cacc7433be245bc6f0`)
+//     .then(function (response) {
+//       console.log(response.status );
+//       console.log(response.statusText );
+//       console.log(response);
+
+//       return response;
+//     })
+//     .catch(function (error) {
+//       alert("Check you internet connection.")
+//       console.log(error);
+//     })
+
+// }
+
+// // Getting Userinput for City Name
+// let data = ``;
+// let isHandlingInput = false; // Flag to prevent multiple executions
+
+// function search() {
+//     let searchBar = document.querySelector(".container-top .search .city-name");
+//     let input = document.querySelector(".container-top .search .input-field");
+
+//     // Show the input field and hide the search bar on click
+//     searchBar.addEventListener("click", () => {
+//         searchBar.style.display = "none";
+//         input.style.display = "block";
+//         input.focus(); // Ensure the input gets focused
+//     });
+
+//     // Handle hiding on blur and updating the value
+//     input.addEventListener("focusout", (event) => {
+//         handleInputClose(event);
+//     });
+
+//     // Handle hiding and updating the value when pressing Enter
+//     input.addEventListener("keypress", (event) => {
+//         if (event.key === "Enter") {
+//             handleInputClose(event);
+//         }
+//     });
+
+//     // Common function to handle input close
+//     function handleInputClose(event) {
+//         if (isHandlingInput) return; // Prevent multiple executions
+//         isHandlingInput = true;
+
+//         const container = document.querySelector(".container-top .search");
+//         if (!container.contains(event.relatedTarget) || event.type === "keypress") {
+//             searchBar.style.display = "block";
+//             input.style.display = "none";
+//             if (input.value.trim() !== "") {
+//                 searchValue = input.value; // Update the global variable
+//                 searchBar.innerText = input.value; // Display the input value
+//                 console.log("Search Value:", searchValue); // Log updated value
+//                 getWeather(input.value);
+//             }
+//         }
+
+//         // Reset the flag after processing
+//         setTimeout(() => {
+//             isHandlingInput = false;
+//         }, 0);
+//     }
+// }
+
+// search();
+// setTimeout(()=>{
+
+//     console.log("he",data);
+// }, 0 )
+
+function checkWeatherCondition(data) {
+    // Query selectors for dynamic updates
+    let weatherIcon = document.querySelector(".basic .weather-icon");
+    let tempIcon = document.querySelector("details img");
+    let temp = document.querySelector("details .temp .temperature");
+    let feels = document.querySelector("details .feels");
+    let weather = document.querySelector("details .weather");
+
+    // Update common details
+    document.querySelector(".div2 .unit .values .data").innerText = `${data.main.humidity}%`;
+    document.querySelector(".div3 .unit .values .val1").innerText = `${data.wind.speed} m/s`;
+    document.querySelector(".div3 .unit .values .val2").innerText = `${data.wind.deg}°`;
+    document.querySelector(".div4 .unit .values .value").innerText = `${data.main.pressure} hPa`;
+    document.querySelector(".div4 .unit .values .val1").innerText = new Date(data.sys.sunrise * 1000).toLocaleTimeString();
+    document.querySelector(".div4 .unit .values .val2").innerText = new Date(data.sys.sunset * 1000).toLocaleTimeString();
+
+    // Validate weather data
+    if (!data || !data.weather || data.weather.length === 0) {
+        console.log("Invalid weather data provided.");
+        return;
+    }
+
+    // Main weather condition and description
+    const mainCondition = data.weather[0].main.toLowerCase(); // e.g., "rain", "snow", "clear"
+    const description = data.weather[0].description.toLowerCase();
+
+    console.log(`Weather Condition: ${mainCondition}, Description: ${description}`);
+
+    // Handle different weather conditions
+    if (mainCondition === "rain") {
+        weatherIcon.src = `./images/raining-cloud.png`;
+        temp.innerText = `${data.main.temp}°C`;
+        feels.innerText = `Feels like ${data.main.feels_like}°C`;
+        weather.innerText = `${data.weather[0].main}`;
+        document.querySelector(".unit .values").innerText = `${data.weather[0].description}`;
+
+        // Additional rain effects
+        if (description === "light rain" || description === "moderate rain") {
+            document.querySelector(".rain.front-row").style.display = "block";
+            document.querySelector(".rain.back-row").style.display = "block";
+            let weatherIcon2 = document.querySelector(".container-bottom .div1 .icon1 img");
+            weatherIcon2.src = `./images/raining-cloud.png`;
+        }
+    } else if (mainCondition === "snow") {
+        weatherIcon.src = `./images/snowfall-cloud1.png`;
+        temp.innerText = `${data.main.temp}°C`;
+        feels.innerText = `Feels like ${data.main.feels_like}°C`;
+        weather.innerText = `${data.weather[0].main}`;
+
+        // Additional snowfall animations
+        document.querySelector(".snow.effect").style.display = "block";
+    } else if (mainCondition === "clear") {
+        weatherIcon.src = `./images/clear-sky.png`;
+        temp.innerText = `${data.main.temp}°C`;
+        feels.innerText = `Feels like ${data.main.feels_like}°C`;
+        weather.innerText = `${data.weather[0].main}`;
+
+        // Hide rain/snow effects if previously active
+        document.querySelector(".rain.front-row").style.display = "none";
+        document.querySelector(".rain.back-row").style.display = "none";
+        document.querySelector(".snow.effect").style.display = "none";
+    } else if (mainCondition === "clouds") {
+        weatherIcon.src = `./images/cloudy.png`;
+        temp.innerText = `${data.main.temp}°C`;
+        feels.innerText = `Feels like ${data.main.feels_like}°C`;
+        weather.innerText = `${data.weather[0].main}`;
+    } else if (mainCondition === "thunderstorm") {
+        weatherIcon.src = `./images/thunderstorm.png`;
+        temp.innerText = `${data.main.temp}°C`;
+        feels.innerText = `Feels like ${data.main.feels_like}°C`;
+        weather.innerText = `${data.weather[0].main}`;
+        document.querySelector(".thunderstorm.effect").style.display = "block";
+    } else if (["mist", "haze", "fog"].includes(mainCondition)) {
+        weatherIcon.src = `./images/foggy.png`;
+        temp.innerText = `${data.main.temp}°C`;
+        feels.innerText = `Feels like ${data.main.feels_like}°C`;
+        weather.innerText = `${data.weather[0].main}`;
+        document.querySelector(".fog.effect").style.display = "block";
+    } else {
+        console.log("Unusual weather condition detected.");
+    }
+}
+
+// Example Usage: Check weather conditions
+checkWeatherCondition(data);
+function checkWeatherCondition(data) {
+    // Query selectors for dynamic updates
+    let weatherIcon = document.querySelector(".basic .weather-icon");
+    let tempIcon = document.querySelector("details img");
+    let temp = document.querySelector("details .temp .temperature");
+    let feels = document.querySelector("details .feels");
+    let weather = document.querySelector("details .weather");
+
+    // Update common details
+    document.querySelector(".div2 .unit .values .data").innerText = `${data.main.humidity}%`;
+    document.querySelector(".div3 .unit .values .val1").innerText = `${data.wind.speed} m/s`;
+    document.querySelector(".div3 .unit .values .val2").innerText = `${data.wind.deg}°`;
+    document.querySelector(".div4 .unit .values .value").innerText = `${data.main.pressure} hPa`;
+    document.querySelector(".div4 .unit .values .val1").innerText = new Date(data.sys.sunrise * 1000).toLocaleTimeString();
+    document.querySelector(".div4 .unit .values .val2").innerText = new Date(data.sys.sunset * 1000).toLocaleTimeString();
+
+    // Validate weather data
+    if (!data || !data.weather || data.weather.length === 0) {
+        console.log("Invalid weather data provided.");
+        return;
+    }
+
+    // Main weather condition and description
+    const mainCondition = data.weather[0].main.toLowerCase(); // e.g., "rain", "snow", "clear"
+    const description = data.weather[0].description.toLowerCase();
+
+    console.log(`Weather Condition: ${mainCondition}, Description: ${description}`);
+
+    // Handle different weather conditions
+    if (mainCondition === "rain") {
+        weatherIcon.src = `./images/raining-cloud.png`;
+        temp.innerText = `${data.main.temp}°C`;
+        feels.innerText = `Feels like ${data.main.feels_like}°C`;
+        weather.innerText = `${data.weather[0].main}`;
+        document.querySelector(".unit .values").innerText = `${data.weather[0].description}`;
+
+        // Additional rain effects
+        if (description === "light rain" || description === "moderate rain") {
+            document.querySelector(".rain.front-row").style.display = "block";
+            document.querySelector(".rain.back-row").style.display = "block";
+            let weatherIcon2 = document.querySelector(".container-bottom .div1 .icon1 img");
+            weatherIcon2.src = `./images/raining-cloud.png`;
+        }
+    } else if (mainCondition === "snow") {
+        weatherIcon.src = `./images/snowfall-cloud1.png`;
+        temp.innerText = `${data.main.temp}°C`;
+        feels.innerText = `Feels like ${data.main.feels_like}°C`;
+        weather.innerText = `${data.weather[0].main}`;
+
+        // Additional snowfall animations
+        document.querySelector(".snow.effect").style.display = "block";
+    } else if (mainCondition === "clear") {
+        weatherIcon.src = `./images/clear-sky.png`;
+        temp.innerText = `${data.main.temp}°C`;
+        feels.innerText = `Feels like ${data.main.feels_like}°C`;
+        weather.innerText = `${data.weather[0].main}`;
+
+        // Hide rain/snow effects if previously active
+        document.querySelector(".rain.front-row").style.display = "none";
+        document.querySelector(".rain.back-row").style.display = "none";
+        document.querySelector(".snow.effect").style.display = "none";
+    } else if (mainCondition === "clouds") {
+        weatherIcon.src = `./images/cloudy.png`;
+        temp.innerText = `${data.main.temp}°C`;
+        feels.innerText = `Feels like ${data.main.feels_like}°C`;
+        weather.innerText = `${data.weather[0].main}`;
+    } else if (mainCondition === "thunderstorm") {
+        weatherIcon.src = `./images/thunderstorm.png`;
+        temp.innerText = `${data.main.temp}`;
+        feels.innerText = `Feels like ${data.main.feels_like}°C`;
+        weather.innerText = `${data.weather[0].main}`;
+        document.querySelector(".thunderstorm.effect").style.display = "block";
+    }  else {
+        console.log("Unusual weather condition detected.");
+    }
+}
+
+// Example Usage: Check weather conditions
+checkWeatherCondition(data);
