@@ -61,7 +61,7 @@ var ctx2 = canvas2.getContext('2d');
 var ctx3 = canvas3.getContext('2d');
 
 var rainthroughnum = 500;
-var speedRainTrough = 25;
+var speedRainTrough = 120;
 var RainTrough = [];
 
 var rainnum = 500;
@@ -238,14 +238,14 @@ function animateLightning() {
 
 function init() {
     createRainTrough();
-    createRain();
+    // createRain();
     window.addEventListener('resize', createRainTrough);
 }
 init();
 
 function animloop() {
     animateRainTrough();
-    animateRain();
+    // animateRain();
     animateLightning();
     requestAnimationFrame(animloop);
 }
@@ -262,8 +262,7 @@ animloop();
 
 
 //   Main Weather icon Tilting Effect
-const card = document.getElementById('weather-icon');
-const glass = document.querySelector(".inner-container");
+const card = document.querySelector('.weather-icon');
 
 card.addEventListener("mousemove", (event) => {
     const pointerX = event.clientX;
@@ -333,17 +332,13 @@ function search() {
         }
     });
 
-function checkWeatherCondition(data) {
-        // if (!data || !data.weather || data.weather.length === 0) {
-        //     alert("Invalid weather data provided.");
-        //     return;
-        // }
-        console.log("working now");
+    function checkWeatherCondition(data) {
+
         // Query selectors for dynamic updates
+        let backgroundImage = document.querySelector("bg-image");
         let weatherIcon = document.querySelector(".basic .weather-icon");
         let tempIcon = document.querySelector("details img");
-        let weatherIcon2 = document.querySelector(".container-bottom .div1 .icon img");
-
+        let weatherIcon2 = document.querySelector(".container-bottom .div1 .icon .weather-icon");
         // Update common details
         document.querySelector(".details .temp .temperature").innerText = `${data.main.temp}°C`;
         document.querySelector(".details .feels").innerText = `Feels like ${data.main.feels_like}°C`;
@@ -353,30 +348,41 @@ function checkWeatherCondition(data) {
         document.querySelector(".div3 .unit .values .val1").innerText = `${data.wind.speed} m/s`;
         document.querySelector(".div3 .unit .values .val2").innerText = `${data.wind.deg}°`;
         document.querySelector(".div4 .unit .values .value").innerText = `${data.main.pressure} hPa`;
-        document.querySelector(".div4 .unit .values .val1").innerText = new Date(data.sys.sunrise * 1000).toLocaleTimeString();
-        document.querySelector(".div4 .unit .values .val2").innerText = new Date(data.sys.sunset * 1000).toLocaleTimeString();
-
+        document.querySelector(".div5 .unit .values .val1").innerText = new Date(data.sys.sunrise * 1000).toLocaleTimeString();
+        document.querySelector(".div5 .unit .values .val2").innerText = new Date(data.sys.sunset * 1000).toLocaleTimeString();
+        const currentTime = new Date().getTime();
 
         // Main weather condition and description
-        const mainCondition = data.weather[0].main.toLowerCase(); // e.g., "rain", "snow", "clear"
+        // const mainCondition = data.weather[0].main.toLowerCase();
+        const mainCondition = "clear";
         const description = data.weather[0].description.toLowerCase();
 
 
         // Handle different weather conditions
+        if (mainCondition === "clear") {
+
+        }
+
+
+
         if (mainCondition === "rain") {
             weatherIcon.src = `./images/raining-cloud.png`;
             weatherIcon2.src = `./images/raining-cloud.png`;
-            // Rain animations
-            document.querySelector(".rain.front-row").style.display = "block";
-            document.querySelector(".rain.back-row").style.display = "block";
 
             // Additional rain effects
             if (description === "light rain" || description === "moderate rain") {
+                // Rain animations
+                document.querySelector(".back-row-toggle.splat-toggle").style.display = "block";
                 document.querySelector(".thunder").style.display = "none";
+                backgroundImage.src = `./images/night/night3.png`;
+                backgroundImage.style.display = "block"
             }
             else {
                 weatherIcon2.src = `./images/thunder-cloud.png`;
+                backgroundImage.src = `./images/night/night.png`;
+                backgroundImage.style.display = "block"
                 // Thunder animation
+                document.querySelector(".back-row-toggle.splat-toggle").style.display = "none";
                 document.querySelector(".thunder").style.display = "block";
             }
         } else if (mainCondition === "snow") {
@@ -388,10 +394,37 @@ function checkWeatherCondition(data) {
 
 
         } else if (mainCondition === "clear") {
-            weatherIcon.src = `./images/clear-sky.png`;
-            temp.innerText = `${data.main.temp}°C`;
-            feels.innerText = `Feels like ${data.main.feels_like}°C`;
-            weather.innerText = `${data.weather[0].main}`;
+
+            let night = document.querySelector(".night-anime");
+            let clouds = document.querySelector(".clouds");
+            if (currentTime >= data.sys.sunrise && currentTime < data.sys.sunset) {
+                backgroundImage.src = `./images/day.sunny-day.jpg`
+                if (data.clouds.all > 0) {
+                    // if day with clouds
+                    weatherIcon.src = `./images`
+                    weatherIcon2.style.display = "none"
+                }
+                else {
+                    weatherIcon.style.display = "none"
+                    weatherIcon2.style.display = "none"
+
+                    document.querySelector(".container-bottom .div1 .icon").innerHTML = `<div class="sunny2 sunny"></div>`
+                    document.querySelector(".basic .icon").innerHTML = `<div class="sunny"></div>`;
+                }
+            }
+            else {
+                if (data.clouds.all > 0) {
+                    weatherIcon.src = `./images/moon-cloud.png`;
+                    weatherIcon2.src = `./images/moon.png`;
+                    night.style.display = "block"
+                    clouds.style.display = "block"
+                }
+                else {
+                    weatherIcon.src = `./images/half-moon-night.png`;
+                    night.style.display = "block"
+                    clouds.style.display = "none"
+                }
+            }
 
             // Hide rain/snow effects if previously active
             document.querySelector(".rain.front-row").style.display = "none";
@@ -432,7 +465,7 @@ function checkWeatherCondition(data) {
                     try {
                         checkWeatherCondition(response.data);
                     } catch (error) {
-                        console.error("Error processing weather data:", error.message);
+                        console.log("Error processing weather data:", error.message);
                     }
                 } else {
                     console.error("Unexpected response status:", response.status);
@@ -443,22 +476,22 @@ function checkWeatherCondition(data) {
                 // Handle errors during the API call
                 if (error.response) {
                     // The API returned an error response
-                    console.error("API Error:", error.response.status, error.response.data);
+                    console.log("API Error:", error.response.status, error.response.data);
                     if (error.response.status === 404) {
-                        showError("City not found. Please enter a valid city name.");
+                        alert("City not found. Please enter a valid city name.");
                     } else if (error.response.status === 401) {
-                        showError("Invalid API key. Please check your credentials.");
+                        console.log("Invalid API key. Please check your credentials.");
                     } else {
-                        showError("An error occurred. Please try again.");
+                        alert("An error occurred. Please try again.");
                     }
                 } else if (error.request) {
                     // Request made but no response received
                     console.error("No response from API:", error.request);
-                    showError("No response from the server. Please check your internet connection.");
+                    alert("No response from the server. Please check your internet connection.");
                 } else {
                     // Any other error
                     console.error("Error:", error.message);
-                    showError("An unexpected error occurred. Please try again.");
+                    alert("An unexpected error occurred. Please try again.");
                 }
             });
     }
@@ -498,8 +531,3 @@ function checkWeatherCondition(data) {
 
 
 search();
-// Example Usage: Check weather conditions
-
-
-// 1 take user input
-// 2 request to server and console.log
