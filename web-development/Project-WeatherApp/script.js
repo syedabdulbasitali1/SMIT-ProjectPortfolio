@@ -360,24 +360,24 @@ document.querySelector(".div5 .unit .values .val2").innerText = new Date(data.sy
         // const mainCondition = "clear";
         const description = data.weather[0].description.toLowerCase();
 
-        if (data.main.temp < 5) {
-            tempIcon.src = `./images/thermometer0.png`
-        }
-        else if (data.main.temp > 5 && data.main.temp < 50) {
-            tempIcon.src = `./images/thermometer50.png`
-        }
-        else {
-            tempIcon.src = `./images/thermometer80.png`
-        }
-        console.log("working")
-        // Handle different weather conditions
+        // if (data.main.temp < 5) {
+        //     tempIcon.src = `./images/thermometer0.png`
+        // }
+        // else if (data.main.temp > 5 && data.main.temp < 50) {
+        //     console.log("working")
+        //     tempIcon.src = `./images/thermometer50.png`
+        // }
+        // else {
+        //     tempIcon.src = `./images/thermometer80.png`
+        // }
+        // // Handle different weather conditions
 
         if (mainCondition === "rain") {
             weatherIcon.src = `./images/raining-cloud.png`;
             weatherIcon2.src = `./images/raining-cloud.png`;
 
             // Additional rain effects
-            if (description === "light rain" || description === "moderate rain") {
+             if (description === "light rain" || description === "moderate rain") {
                 backgroundImage.style.backgroundImage = `url(./images/night/night3.png)`;
                 // Rain animations
                 // Light Raining No Lightning
@@ -387,7 +387,7 @@ document.querySelector(".div5 .unit .values .val2").innerText = new Date(data.sy
             <div class="rain back-row"></div>
         </div>`;
             }
-            else {
+             else {
                 weatherIcon2.src = `./images/thunder-cloud.png`;
                 backgroundImage.style.backgroundImage = `url(./images/night/night.png)`;
                 // Thunder animation
