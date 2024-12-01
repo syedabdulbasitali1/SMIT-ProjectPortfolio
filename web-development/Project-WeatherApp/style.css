@@ -305,10 +305,151 @@ body.single-toggle .drop:nth-child(10) {
 
 /* 3) End */
 
+/* 4) Night Insect Animation */
+.firefly {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 0.4vw;
+    height: 0.4vw;
+    margin: -0.2vw 0 0 9.8vw;
+    animation: ease 200s alternate infinite;
+    pointer-events: none;
+  }
 
+  .firefly::before,
+  .firefly::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transform-origin: -10vw;
+  }
 
+  .firefly::before {
+    background: black;
+    opacity: 0.4;
+    animation: drift ease alternate infinite;
+  }
 
+  .firefly::after {
+    background: white;
+    opacity: 0;
+    box-shadow: 0 0 0vw 0vw yellow;
+    animation: drift ease alternate infinite, flash ease infinite;
+  }
 
+  @keyframes drift {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes flash {
+    0%, 30%, 100% {
+      opacity: 0;
+      box-shadow: 0 0 0vw 0vw yellow;
+    }
+    5% {
+      opacity: 1;
+      box-shadow: 0 0 2vw 0.4vw yellow;
+    }
+  }
+
+  /* Generate Randomized Animations for Each Firefly */
+  @keyframes move1 { /* Example for Firefly 1 */
+    0% { transform: translateX(-10vw) translateY(-20vh) scale(0.5); }
+    100% { transform: translateX(20vw) translateY(30vh) scale(0.8); }
+  }
+
+  @keyframes move2 { /* Example for Firefly 2 */
+    0% { transform: translateX(-30vw) translateY(40vh) scale(0.6); }
+    100% { transform: translateX(25vw) translateY(-25vh) scale(0.9); }
+  }
+
+  /* Add More Animations as Needed */
+
+  /* Attach Animations to Fireflies */
+  .firefly:nth-child(1) {
+    animation-name: move1;
+  }
+
+  .firefly:nth-child(2) {
+    animation-name: move2;
+  }
+
+  /* Randomize Durations */
+  .firefly:nth-child(1)::before {
+    animation-duration: 10s;
+  }
+
+  .firefly:nth-child(1)::after {
+    animation-duration: 10s, 6000ms;
+    animation-delay: 0ms, 500ms;
+  }
+
+  .firefly:nth-child(2)::before {
+    animation-duration: 12s;
+  }
+
+  .firefly:nth-child(2)::after {
+    animation-duration: 12s, 7000ms;
+    animation-delay: 0ms, 1000ms;
+  }
+
+  /* 4) End */
+
+  /* 5) Snowfall Animation */
+/* Snowfall Grid Size and Density */
+html {
+    height: 100%;
+    background: linear-gradient(#123 30%, #667);
+    overflow: hidden;
+  }
+
+  .snow, .snow:before, .snow:after {
+    position: absolute;
+    top: -600px; /* Matches the grid size */
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image:
+      radial-gradient(6px 6px at 78px 121px, rgba(255,255,255,0.9) 50%, rgba(0,0,0,0)),
+      radial-gradient(5px 5px at 132px 243px, rgba(255,255,255,0.6) 50%, rgba(0,0,0,0)),
+      radial-gradient(7px 7px at 220px 120px, rgba(255,255,255,0.8) 50%, rgba(0,0,0,0)),
+      radial-gradient(8px 8px at 400px 300px, rgba(255,255,255,0.7) 50%, rgba(0,0,0,0));
+    background-size: 600px 600px; /* Matches grid size */
+    animation: snow 3s linear infinite; /* Base speed for snowfall */
+    content: "";
+  }
+
+  .snow:after {
+    margin-left: -200px; /* Adjusted offset */
+    opacity: 0.4;
+    animation-duration: 6s; /* Slower speed for "after" */
+    animation-direction: reverse;
+    filter: blur(3px);
+  }
+
+  .snow:before {
+    margin-left: -300px; /* Adjusted offset */
+    opacity: 0.65;
+    animation-duration: 9s; /* Even slower speed for "before" */
+    animation-direction: reverse;
+    filter: blur(1.5px);
+  }
+
+  @keyframes snow {
+    to {
+      transform: translateY(600px); /* Matches grid size for a full drop */
+    }
+  }
+
+/* 5) End */
 
 
 
@@ -326,15 +467,24 @@ body.single-toggle .drop:nth-child(10) {
 
 
 /* zindex -10 */
-.bg-image {
+.background-animation{
+    background: url(./images/default-background.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -10;
+}
+/* .bg-image {
     width: 100% ;
     height: 100%;
     position: absolute;
     top: 0px;
     left: 0px;
     z-index: -10;
-    display: none;
-}
+} */
 
 /* zindex 2 */
 .main-container {
@@ -384,7 +534,10 @@ body.single-toggle .drop:nth-child(10) {
 }
 
 .search .city-name {
-    color: rgba(0, 0, 0, 0.607);
+    /* color: rgba(0, 0, 0, 0.607); */
+    background: linear-gradient(220.55deg, #565656 0%, #181818 100%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
     padding-left: 24px;
     height: 50px;
     width: 350px;
@@ -411,13 +564,11 @@ body.single-toggle .drop:nth-child(10) {
 	position: relative;
 	width: 11rem;
 	height: 11rem;
-    display: none;
 }
 .sunny2.sunny {
     position: relative;
 	width: 5rem;
 	height: 5rem;
-    display: none;
 }
 .sunny:before,
 .partly_cloudy__sun:before {
@@ -479,6 +630,7 @@ body.single-toggle .drop:nth-child(10) {
 
 .container-top .icon .weather-icon {
     filter: drop-shadow(rgba(0, 0, 0, 0.486) -10px 1px 10px);
+    height: 280px;
 }
 
 .container-top .input-field {
@@ -514,6 +666,9 @@ body.single-toggle .drop:nth-child(10) {
     align-items: center;
     justify-content: space-evenly;
     gap: 2rem;
+    background: linear-gradient(220.55deg, #EAEAEA 0%, #8B8B8B 100%);
+        -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
 }
 
 .details {
@@ -603,6 +758,9 @@ body.single-toggle .drop:nth-child(10) {
     justify-content: center;
     gap: .5rem;
     overflow: hidden;
+    background: linear-gradient(220.55deg, #EAEAEA 0%, #8B8B8B 100%);
+    -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
 }
 .child-div .unit .title{
     display: flex;

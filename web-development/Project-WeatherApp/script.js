@@ -53,6 +53,8 @@ makeItRain();
 
 
 // 2) Havy Rain with Thunder
+
+var makeItRainHeavy = function () {
 var canvas1 = document.getElementById('canvas1');
 var canvas2 = document.getElementById('canvas2');
 var canvas3 = document.getElementById('canvas3');
@@ -251,6 +253,7 @@ function animloop() {
 }
 animloop();
 
+}
 // 2) End
 
 
@@ -335,10 +338,10 @@ function search() {
     function checkWeatherCondition(data) {
 
         // Query selectors for dynamic updates
-        let backgroundImage = document.querySelector("bg-image");
+        let backgroundImage = document.querySelector(".background-animation");
         let weatherIcon = document.querySelector(".basic .weather-icon");
         let tempIcon = document.querySelector("details img");
-        let weatherIcon2 = document.querySelector(".container-bottom .div1 .icon .weather-icon");
+        let weatherIcon2 = document.querySelector(".container-bottom .div1 .icon1 .weather-icon");
         // Update common details
         document.querySelector(".details .temp .temperature").innerText = `${data.main.temp}°C`;
         document.querySelector(".details .feels").innerText = `Feels like ${data.main.feels_like}°C`;
@@ -348,22 +351,26 @@ function search() {
         document.querySelector(".div3 .unit .values .val1").innerText = `${data.wind.speed} m/s`;
         document.querySelector(".div3 .unit .values .val2").innerText = `${data.wind.deg}°`;
         document.querySelector(".div4 .unit .values .value").innerText = `${data.main.pressure} hPa`;
-        document.querySelector(".div5 .unit .values .val1").innerText = new Date(data.sys.sunrise * 1000).toLocaleTimeString();
-        document.querySelector(".div5 .unit .values .val2").innerText = new Date(data.sys.sunset * 1000).toLocaleTimeString();
-        const currentTime = new Date().getTime();
+        document.querySelector(".div5 .unit .values .val1").innerText = new Date(data.sys.sunrise * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+document.querySelector(".div5 .unit .values .val2").innerText = new Date(data.sys.sunset * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
+        let currentTime = Math.floor(Date.now() / 1000);
         // Main weather condition and description
-        // const mainCondition = data.weather[0].main.toLowerCase();
-        const mainCondition = "clear";
+        const mainCondition = data.weather[0].main.toLowerCase();
+        // const mainCondition = "clear";
         const description = data.weather[0].description.toLowerCase();
 
-
-        // Handle different weather conditions
-        if (mainCondition === "clear") {
-
+        if (data.main.temp < 5) {
+            tempIcon.src = `./images/thermometer0.png`
         }
-
-
+        else if (data.main.temp > 5 && data.main.temp < 50) {
+            tempIcon.src = `./images/thermometer50.png`
+        }
+        else {
+            tempIcon.src = `./images/thermometer80.png`
+        }
+        console.log("working")
+        // Handle different weather conditions
 
         if (mainCondition === "rain") {
             weatherIcon.src = `./images/raining-cloud.png`;
@@ -371,19 +378,27 @@ function search() {
 
             // Additional rain effects
             if (description === "light rain" || description === "moderate rain") {
+                backgroundImage.style.backgroundImage = `url(./images/night/night3.png)`;
                 // Rain animations
-                document.querySelector(".back-row-toggle.splat-toggle").style.display = "block";
-                document.querySelector(".thunder").style.display = "none";
-                backgroundImage.src = `./images/night/night3.png`;
-                backgroundImage.style.display = "block"
+                // Light Raining No Lightning
+                backgroundImage.innerText = `
+        <div class="back-row-toggle splat-toggle">
+            <div class="rain front-row"></div>
+            <div class="rain back-row"></div>
+        </div>`;
             }
             else {
                 weatherIcon2.src = `./images/thunder-cloud.png`;
-                backgroundImage.src = `./images/night/night.png`;
-                backgroundImage.style.display = "block"
+                backgroundImage.style.backgroundImage = `url(./images/night/night.png)`;
                 // Thunder animation
-                document.querySelector(".back-row-toggle.splat-toggle").style.display = "none";
-                document.querySelector(".thunder").style.display = "block";
+                // 2) Havy Raining with Lightning
+                backgroundImage.innerText = `
+        <div class="thunder">
+            <canvas id="canvas1"></canvas>
+            <canvas id="canvas2"></canvas>
+            <canvas id="canvas3"></canvas>
+        </div>`;
+        makeItRainHeavy();
             }
         } else if (mainCondition === "snow") {
             weatherIcon.src = `./images/snowfall-cloud.png`;
@@ -394,59 +409,101 @@ function search() {
 
 
         } else if (mainCondition === "clear") {
-
             let night = document.querySelector(".night-anime");
             let clouds = document.querySelector(".clouds");
-            if (currentTime >= data.sys.sunrise && currentTime < data.sys.sunset) {
-                backgroundImage.src = `./images/day.sunny-day.jpg`
-                if (data.clouds.all > 0) {
-                    // if day with clouds
-                    weatherIcon.src = `./images`
-                    weatherIcon2.style.display = "none"
-                }
-                else {
-                    weatherIcon.style.display = "none"
-                    weatherIcon2.style.display = "none"
 
-                    document.querySelector(".container-bottom .div1 .icon").innerHTML = `<div class="sunny2 sunny"></div>`
+            if (currentTime > data.sys.sunrise) {
+                backgroundImage.style.backgroundImage = `url(./images/day.sunny-day.jpg)`;
+
+                if (data.clouds.all > 0) {
+                    // Day with clouds
+                    weatherIcon.src = `./images/light-cloud.png`;
+                    weatherIcon2.style.display = "none";
+                } else {
+                    // Sunny day
+                    weatherIcon.style.display = "none";
+                    weatherIcon2.style.display = "none";
+
+                    document.querySelector(".container-bottom .div1 .icon").innerHTML = `<div class="sunny2 sunny"></div>`;
                     document.querySelector(".basic .icon").innerHTML = `<div class="sunny"></div>`;
                 }
-            }
-            else {
+            } else {
+                document.querySelector(".main-container").style.backgroundColor = `rgba(255, 255, 255, 0.1)`;
+
+                const cityNameElement = document.querySelector(".search .city-name");
+                const inputText = document.querySelector(".container-top .input-field");
+
+                cityNameElement.style.background = "linear-gradient(220.55deg, #EAEAEA 0%, #8B8B8B 100%)";
+                cityNameElement.style.webkitBackgroundClip = "text";
+                cityNameElement.style.webkitTextFillColor = "transparent";
+
+                inputText.style.background = "linear-gradient(220.55deg, #EAEAEA 0%, #8B8B8B 100%)";
+                inputText.style.webkitBackgroundClip = "text";
+                inputText.style.webkitTextFillColor = "transparent";
+
+
                 if (data.clouds.all > 0) {
                     weatherIcon.src = `./images/moon-cloud.png`;
-                    weatherIcon2.src = `./images/moon.png`;
-                    night.style.display = "block"
-                    clouds.style.display = "block"
-                }
-                else {
-                    weatherIcon.src = `./images/half-moon-night.png`;
-                    night.style.display = "block"
-                    clouds.style.display = "none"
+                    weatherIcon2.src = `./images/moon-cloud.png`;
+                    // 3) Night with Clouds
+                    backgroundImage.innerHTML = `
+        <div class="night-anime">
+            <div class="stars"></div>
+            <div class="clouds"></div>
+        </div>`;
+                } else {
+                    backgroundImage.style.backgroundImage = `url(./images/night/night3.png)`;
+                    weatherIcon.src = `./images/half-moon-cloud.png`;
+                    weatherIcon2.src = `./images/full-moon.png`;
+                    backgroundImage.innerHTML = `
+        <div class="night-anime">
+            <div class="stars"></div>
+        </div>`;
                 }
             }
 
+
+
+
             // Hide rain/snow effects if previously active
-            document.querySelector(".rain.front-row").style.display = "none";
-            document.querySelector(".rain.back-row").style.display = "none";
+            document.querySelector("back-row-toggle").style.display = "none";
+            document.querySelector(".thunder").style.display = "none";
             document.querySelector(".snow.effect").style.display = "none";
-        } else if (mainCondition === "clouds") {
-            weatherIcon.src = `./images/cloudy.png`;
-            temp.innerText = `${data.main.temp}°C`;
-            feels.innerText = `Feels like ${data.main.feels_like}°C`;
-            weather.innerText = `${data.weather[0].main}`;
-        } else if (mainCondition === "thunderstorm") {
+        }
+        else if (mainCondition === "clouds") {
+            weatherIcon.src = `./images/happy-cloud.png`;
+            if (currentTime > data.sys.sunrise){
+                weatherIcon2.src = `light-cloud-day.png`;
+            }
+            else{
+                weatherIcon2.src = `moon-cloud.png`;
+            }
+        }
+        else if (mainCondition === "thunderstorm") {
+            backgroundImage.style.backgroundImage = `url(./images/night/thunderstorm.jpg)`;
             weatherIcon.src = `./images/thunderstorm.png`;
-            temp.innerText = `${data.main.temp}°C`;
-            feels.innerText = `Feels like ${data.main.feels_like}°C`;
-            weather.innerText = `${data.weather[0].main}`;
-            document.querySelector(".thunderstorm.effect").style.display = "block";
-        } else if (["mist", "haze", "fog"].includes(mainCondition)) {
-            weatherIcon.src = `./images/foggy.png`;
-            temp.innerText = `${data.main.temp}°C`;
-            feels.innerText = `Feels like ${data.main.feels_like}°C`;
-            weather.innerText = `${data.weather[0].main}`;
-            document.querySelector(".fog.effect").style.display = "block";
+            weatherIcon2.src = `./images/snowfall-cloud2.png`;
+            // Thunder animation
+                // 2) Havy Raining with Lightning
+                backgroundImage.innerText = `
+        <div class="thunder">
+            <canvas id="canvas1"></canvas>
+            <canvas id="canvas2"></canvas>
+            <canvas id="canvas3"></canvas>
+        </div>`;
+        }
+        else if (["mist", "haze", "fog"].includes(mainCondition)) {
+
+            weatherIcon.src = `./images/haze.png`;
+            if (currentTime > data.sys.sunrise ) {
+                backgroundImage.style.backgroundImage = `url(./images/day/clear.jpg)`;
+
+                weatherIcon2.src = `./images/light-cloud-day.png`
+            }
+            else {
+                backgroundImage.style.backgroundImage = `url(./images/day/clear.jpg)`;
+                weatherIcon2.src = `./images/half-moon-cloud.png`
+            }
         } else {
             console.log("Unusual weather condition detected.");
         }
