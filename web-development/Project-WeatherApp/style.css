@@ -29,9 +29,6 @@ main {
 /* 1) Light Raining no Lightning */
 
 /* zindex = 1 */
-.back-row-toggle.splat-toggle{
-    display: none;
-}
 .rain {
     position: absolute;
     left: 0;
@@ -175,14 +172,11 @@ body.single-toggle .drop:nth-child(10) {
   .thunder {
     width: 100%;
     height: 100%;
-    /* background-color: #222; */
-    /* background-image: url('https://drive.google.com/uc?export=view&id=0BzFF7FmbJUo5X0NEUXFVd0NBcWc'); */
     background-size: cover;
     background-position: 0 0;
     background-repeat: no-repeat;
     position: relative;
     z-index: 1;
-    display: none;
   }
 
 
@@ -253,7 +247,6 @@ body.single-toggle .drop:nth-child(10) {
     left: 0;
     bottom: 0;
     right: 0;
-    display: none;
   }
 
   .stars {
@@ -265,19 +258,6 @@ body.single-toggle .drop:nth-child(10) {
     right: 0;
     display: block;
     z-index: 0;
-  }
-
-  .twinkling {
-    width: 10000px;
-    height: 100%;
-    background: transparent url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/twinkling.png") repeat;
-    background-size: 1000px 1000px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 1;
-    animation: move-background 70s linear infinite;
   }
 
   .clouds {
@@ -405,12 +385,6 @@ body.single-toggle .drop:nth-child(10) {
 
   /* 5) Snowfall Animation */
 /* Snowfall Grid Size and Density */
-html {
-    height: 100%;
-    background: linear-gradient(#123 30%, #667);
-    overflow: hidden;
-  }
-
   .snow, .snow:before, .snow:after {
     position: absolute;
     top: -600px; /* Matches the grid size */
@@ -430,7 +404,7 @@ html {
   .snow:after {
     margin-left: -200px; /* Adjusted offset */
     opacity: 0.4;
-    animation-duration: 6s; /* Slower speed for "after" */
+    animation-duration: 8s; /* Slower speed for "after" */
     animation-direction: reverse;
     filter: blur(3px);
   }
@@ -438,7 +412,7 @@ html {
   .snow:before {
     margin-left: -300px; /* Adjusted offset */
     opacity: 0.65;
-    animation-duration: 9s; /* Even slower speed for "before" */
+    animation-duration: 12s; /* Even slower speed for "before" */
     animation-direction: reverse;
     filter: blur(1.5px);
   }
@@ -477,15 +451,6 @@ html {
     left: 0;
     z-index: -10;
 }
-/* .bg-image {
-    width: 100% ;
-    height: 100%;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    z-index: -10;
-} */
-
 /* zindex 2 */
 .main-container {
     width: 65%;
